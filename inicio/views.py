@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 # from django.http import HttpResponse
 # from django.template import loader
 from inicio.models import Paleta
-from inicio.forms import CrearPaletaFormulario
+from inicio.forms import CrearPaletaFormulario, BusquedaPaletaFormulario
 
 def inicio(request):
     
@@ -17,14 +17,23 @@ def inicio(request):
 
 def paletas(request):
     
-    marca_a_buscar = request.GET.get('marca')
+    # v1
+    # marca_a_buscar = request.GET.get('marca')
     
-    if marca_a_buscar:
+    # if marca_a_buscar:
+    #     listado_de_paletas = Paleta.objects.filter(marca__icontains=marca_a_buscar)
+    # else:
+    #     listado_de_paletas = Paleta.objects.all()
+    
+    # v2
+    formulario = BusquedaPaletaFormulario(request.GET)
+    if formulario.is_valid():
+        marca_a_buscar = formulario.cleaned_data.get('marca')
         listado_de_paletas = Paleta.objects.filter(marca__icontains=marca_a_buscar)
-    else:
-        listado_de_paletas = Paleta.objects.all()
-        
-    return render(request, 'inicio/paletas.html', {'listado_de_paletas': listado_de_paletas})
+    
+    formulario = BusquedaPaletaFormulario()
+    return render(request, 'inicio/paletas.html', {'formulario': formulario, 'listado_de_paletas': listado_de_paletas})
+
 
 def crear_paleta(request):
     

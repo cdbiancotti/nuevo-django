@@ -4,3 +4,6 @@ class CrearPaletaFormulario(forms.Form):
     marca = forms.CharField(max_length=30)
     descripcion = forms.CharField(max_length=250)
     anio = forms.IntegerField()
+    
+class BusquedaPaletaFormulario(forms.Form):
+    marca = forms.CharField(max_length=30, required=False)
