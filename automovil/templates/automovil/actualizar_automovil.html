@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title_head %}
+<title>Actualizar Automovil</title>
+{% endblock title_head %}
+
+{% block h1_header %}
+Actualizar Automovil
+{% endblock h1_header %}
+
+{% block main %}
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {{form}}
+    <input type="submit" value="Actualizar">
+</form>
+
+{% endblock main %}

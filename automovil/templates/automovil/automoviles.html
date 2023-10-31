@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title_head %}
+<title>Automoviles</title>
+{% endblock title_head %}
+
+{% block h1_header %}
+Automoviles
+{% endblock h1_header %}
+
+{% block main %}
+<p>
+    <a href={% url "crear_automovil" %}>Crear Automovil</a>
+</p>
+
+<!--
+
+    <form action="">
+        {% comment %} <input type="text" name="marca" placeholder="Wilson, Head..."> {% endcomment %}
+        {{formulario}}
+        <input type="submit" value="Buscar">
+    </form>
+-->
+    
+{% if listado_de_automoviles %}
+<ul>
+    {% for automovil in listado_de_automoviles %}
+    <li><a href={% url "detalle_automovil" automovil.id %}>{{automovil}}</a> | <a href={% url "actualizar_automovil" automovil.id %}>Actualizar</a> | <a href={% url "eliminar_automovil" automovil.id %}>Eliminar</a>
+    </li>
+        {% endfor %}
+</ul>
+{% else %}
+<p>No se encontraron automoviles.</p>
+{% endif %}
+
+{% endblock main %}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title_head %}
+<title>Paleta {{paleta.id}}</title>
+{% endblock title_head %}
+
+{% block h1_header %}
+Paleta {{paleta.id}}
+{% endblock h1_header %}
+
+{% block main %}
+
+<ul>
+    <li>Marca: {{paleta.marca}}</li>
+    <li>Descripción: {{paleta.descripcion}}</li>
+    <li>Año: {{paleta.anio}}</li>
+</ul>
+
+{% endblock main %}
