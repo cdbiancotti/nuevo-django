@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 # from django.template import loader
 from inicio.models import Paleta
 from inicio.forms import CrearPaletaFormulario, BusquedaPaletaFormulario, ActualizarPaletaFormulario
+from django.contrib.auth.decorators import login_required
 
 def inicio(request):
     
@@ -34,7 +35,7 @@ def paletas(request):
     formulario = BusquedaPaletaFormulario()
     return render(request, 'inicio/paletas.html', {'formulario': formulario, 'listado_de_paletas': listado_de_paletas})
 
-
+@login_required
 def crear_paleta(request):
     
     # v1 (HTML)
@@ -73,11 +74,13 @@ def crear_paleta(request):
     formulario = CrearPaletaFormulario()
     return render(request, 'inicio/crear_paleta.html', {'formulario': formulario})
 
+@login_required
 def eliminar_paleta(request, paleta_id):
     paleta_a_eliminar = Paleta.objects.get(id=paleta_id)
     paleta_a_eliminar.delete()
     return redirect("paletas")
-    
+
+@login_required
 def actualizar_paleta(request, paleta_id):
     paleta_a_actualizar = Paleta.objects.get(id=paleta_id)
     
