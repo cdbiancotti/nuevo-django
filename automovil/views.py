@@ -12,6 +12,19 @@ class ListadoAutomoviles(ListView):
     context_object_name = 'listado_de_automoviles'
     template_name = 'automovil/automoviles.html'
     
+    def get_queryset(self):
+        marca = self.request.GET.get('marca', '')
+        if marca:
+            listado_de_automoviles = self.model.objects.filter(marca__icontains=marca)
+        else:
+            listado_de_automoviles = self.model.objects.all()
+        return listado_de_automoviles
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context["formulario"] = BusquedaAuto()
+    #     return context
+    
     
 class CrearAutomovil(LoginRequiredMixin, CreateView):
     model = Automovil

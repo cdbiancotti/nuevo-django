@@ -1,5 +1,6 @@
 from django import forms
 from inicio.models import Paleta
+from ckeditor.fields import RichTextFormField
 
 
 # otrea version de formulario de paleta
@@ -11,7 +12,7 @@ from inicio.models import Paleta
 
 class BasePaletaFormulario(forms.Form):
     marca = forms.CharField(max_length=30)
-    descripcion = forms.CharField(max_length=250)
+    descripcion = RichTextFormField()
     anio = forms.IntegerField()
     
 

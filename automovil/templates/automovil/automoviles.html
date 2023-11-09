@@ -13,15 +13,11 @@ Automoviles
     <a href={% url "crear_automovil" %}>Crear Automovil</a>
 </p>
 
-<!--
+<form action={% url "automoviles" %}>
+    <input type="text" name="marca" placeholder="Ford, Fiat...">
+    <input type="submit" value="Buscar">
+</form>
 
-    <form action="">
-        {% comment %} <input type="text" name="marca" placeholder="Wilson, Head..."> {% endcomment %}
-        {{formulario}}
-        <input type="submit" value="Buscar">
-    </form>
--->
-    
 {% if listado_de_automoviles %}
 <ul>
     {% for automovil in listado_de_automoviles %}

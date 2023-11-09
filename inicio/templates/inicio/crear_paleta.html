@@ -36,7 +36,10 @@ Crear Paleta
 
 <form action="" method="POST">
     {% csrf_token %}
-    {{formulario}}
+    <table>
+        {{formulario.media}}
+        {{formulario}}
+    </table>
     <input type="submit" value="Crear">
 </form>
 
